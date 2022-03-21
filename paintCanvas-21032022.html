@@ -1,0 +1,52 @@
+<canvas width="1000" height="700"></canvas>
+<br>
+<p>Digite o tamanho do pincel: <input id="input1" size="5"></p>
+<p>Selecione a cor: <input id="input2" type="color"></p>
+<p>Click esquerdo no canvas desenha.<br>Click direito no canvas pinta todo o canvas com a cor selecionada.<br>Segurar Shift ao clicar com o botão direito limpa o canvas.</p>
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    var tamanho = document.getElementById('input1');
+    var paleta = document.getElementById('input2');
+        
+    var desenha = false;
+
+    function desenhaCirculo(evento) {
+
+        
+        if(desenha) {
+            let x = evento.pageX - tela.offsetLeft;
+            let y = evento.pageY - tela.offsetTop;
+            pincel.fillStyle = paleta.value;
+            pincel.beginPath();
+            pincel.arc(x, y, tamanho.value, 0, 2 * 3.14);
+            pincel.fill();
+        }
+        console.log(x + ',' + y);
+    }
+
+    tamanho.focus();
+
+    tela.onmousemove = desenhaCirculo;
+
+    tela.oncontextmenu = function(event){
+
+        if (event.shiftKey){
+            pincel.fillStyle = 'white';
+        } else {
+            pincel.fillStyle = paleta.value;
+        }
+        
+        pincel.fillRect(0, 0, tela.width, tela.height);
+        return false;
+    }
+       
+    tela.onmousedown = function() {
+
+        desenha = true;
+    }
+    tela.onmouseup = function() {
+
+        desenha = false;
+    }
+</script>
