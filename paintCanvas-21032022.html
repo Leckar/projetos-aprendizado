@@ -23,7 +23,7 @@
             pincel.arc(x, y, tamanho.value, 0, 2 * Math.PI);
             pincel.fill();
         }
-        console.log(x + ',' + y);
+        
     }
 
     tamanho.focus();
@@ -33,13 +33,18 @@
     tela.oncontextmenu = function(event){
 
         if (event.shiftKey){
-            pincel.fillStyle = 'white';
+        
+            pincel.clearRect(0, 0, tela.width, tela.height);
+        
         } else {
+        
             pincel.fillStyle = paleta.value;
+            pincel.fillRect(0, 0, tela.width, tela.height);
+        
         }
         
-        pincel.fillRect(0, 0, tela.width, tela.height);
         return false;
+    
     }
        
     tela.onmousedown = function() {
