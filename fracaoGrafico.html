@@ -1,0 +1,92 @@
+<input/><button>Confirma</button>
+<canvas width="1200" height="100">
+</canvas>
+
+
+
+	
+
+
+
+<script>
+	var input = document.querySelector('input'); //Variável associada ao input HTML.
+	var button = document.querySelector('button'); //Variável associada ao button HTML.
+	var screen = document.querySelector('canvas'); // Variável associada ao canvas HTML.
+	var brush = screen.getContext('2d'); // Variável contextualizada para preencher o canvas HTML.
+
+	function tinta(cor) { // Função para selecionar a cor a ser aplicada nas formas planas.
+		
+		brush.fillStyle = cor;
+	
+	}
+
+	function retangulo(largIni, altIni, largFin , altFin) { // Função que recebe as coordenadas x e y do vértice inicial do polígono para definir seu tamanho e posição no plano 2D.
+		
+		brush.fillRect(largIni, altIni, largFin , altFin);
+	
+	}
+
+		
+	function tintaBorda(cor){ // Função para selecionar a cor a ser aplicada nos polígonos sem preenchimento.
+
+		brush.strokeStyle = cor;
+
+	}
+
+	function bordaRetangular(largIni, altIni, largFin , altFin) {  // Função que recebe as coordenadas x e y do vértice inicial do polígono para definir seu tamanho e posição no plano 2D. Cria um polígono sem preenchimento.
+	
+	brush.strokeRect(largIni, altIni, largFin , altFin);
+	
+	}
+
+
+   function fracaoEmQuadrados(x, y) { // Função que recebe um numerador e denominador de uma fração e aplica esses dados em 2 estruturas de repetição para reproduzir na tela a fração de forma gráfica.
+
+   		let sqr = 0;
+
+   		for (let i = 1; i <= x; i++) {
+   			
+   			tinta('blue');
+   			retangulo(sqr, 30, 40, 40);
+   			sqr = sqr + 40;
+
+   		}	
+
+   		sqr = 0;
+
+   		for (let i = 1; i <= y; i++) {
+
+   			tintaBorda('red');
+   			bordaRetangular(sqr, 30, 40, 40);
+   			sqr = sqr + 40;
+   		}
+   		  		
+   	}
+
+   	var numDen = [];
+
+   	function checkClick(){ // Função execudada ao clicar no botão "confirma". Ao clicar a função checa se já rodou antes e salva o input como elemento de um array. Caso ela detecte que já rodou antes, rodará uma função para exibir a representação gráfica da fração. 
+
+   		if (numDen.length == 0) {
+   			
+   			numDen.push(input.value);
+   			alert('Digite o denominador da fração.');
+   			input.value = '';
+   			input.focus();
+
+   		} else if (numDen.length == 1) {
+
+   			numDen.push(input.value);
+   			input.value = '';
+   			return fracaoEmQuadrados(numDen[0], numDen[1]);
+   		}
+   	
+   	}
+   	
+   	   
+	alert('Digite o numerador da fração.');
+	input.focus();
+	button.onclick = checkClick;
+   
+	
+</script> 
