@@ -20,7 +20,7 @@
             let y = evento.pageY - tela.offsetTop;
             pincel.fillStyle = paleta.value;
             pincel.beginPath();
-            pincel.arc(x, y, tamanho.value, 0, 2 * 3.14);
+            pincel.arc(x, y, tamanho.value, 0, 2 * Math.PI);
             pincel.fill();
         }
         console.log(x + ',' + y);
