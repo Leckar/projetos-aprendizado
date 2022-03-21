@@ -10,41 +10,41 @@
     brush.fillStyle = 'grey';
     brush.fillRect(0, 0, 600, 400);
 
+    let counter = 0;
+    let color = ['blue', 'red', 'green'];
     
-    brush.fillStyle = "blue"; // Setando a cor das bolas como azul por padrão.
     
     function paintBalls(event){
 
         let x = event.pageX - screen.offsetLeft;
         let y = event.pageY - screen.offsetTop;
+        let r = 10
         
+        if (event.shiftKey) {
+
+            r = r * 3
+            
+        }
+
+        brush.fillStyle = color[counter]
         brush.beginPath();
-        brush.arc(x, y, 10, 0, 2*3.14);
+        brush.arc(x, y, r, 0, 2*3.14);
         brush.fill();
 
         console.log("Posição do clique : " + x + ", " + y);
     
     }
 
-    let counter = [];
+    
 
     function reColor() {
 
-        if (counter.length == 0) {
+        counter++
+
+        if (counter == color.length) {
             
-            brush.fillStyle = "red";
-            counter.push(0);
+            counter = 0;
             
-        } else if (counter.length == 1) {
-
-            brush.fillStyle = "green";
-            counter.push(0);
-        
-        } else {
-
-            brush.fillStyle = "blue";
-            counter.splice(0, counter.length);
-
         }
 
         return false;
