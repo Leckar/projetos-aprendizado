@@ -6,7 +6,8 @@
     var pincel = painel.getContext('2d');
 
     function pintaBola(x, y, r, color){
-
+        
+        pincel.clearRect(0, 0, painel.width, painel.height);
         pincel.fillStyle = color;
         pincel.beginPath();
         pincel.arc(x, y, r, 0, 2*Math.PI);
@@ -23,7 +24,7 @@
     let down = 40;
     let increase = 5;
 
-    function caelid(){
+    function corECoordenadas(){
         
         
         if(x % 2 == 0 && y % 2 == 0) {
@@ -40,12 +41,11 @@
             z = 3;
         }
 
-        pincel.clearRect(0, 0, painel.width, painel.height);
         pintaBola(x, y, 10, color[z]);
 
     }
 
-    setInterval(caelid, 10);
+    setInterval(corECoordenadas, 10);
 
     document.onkeydown = function(event){
 
