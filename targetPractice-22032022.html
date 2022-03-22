@@ -1,0 +1,155 @@
+<meta charset="UTF-8">
+<h1>Bem-vindos ao tiro ao alvo!</h1>
+<p>Escolha a dificuldade:</p><br>
+<button id="easy">Fácil</button><button id="hard">Difícil</button><br>
+<p id="textbox"></p>
+<canvas width="600" height="600"></canvas>
+
+
+<script>
+
+    var screen = document.querySelector('canvas');
+    var brush = screen.getContext('2d');
+    var easyMode = document.getElementById('easy');
+    var hardMode = document.getElementById('hard');
+    var textbox = document.getElementById('textbox');
+
+    function drawCircle(xAxis, yAxis, radius, color){
+        
+        brush.fillStyle = color;
+        brush.beginPath();
+        brush.arc(xAxis, yAxis, radius, 0, 2*Math.PI);
+        brush.fill();
+
+    }
+
+    function clearCanvas(){
+
+        brush.clearRect(0, 0, screen.width, screen.height);
+
+    }
+
+    let radius = 15;
+    
+    function drawTarget(xAxis, yAxis){
+           
+        drawCircle(xAxis, yAxis, 4*radius, 'blue');
+        drawCircle(xAxis, yAxis, Math.round(2.5*radius), 'yellow');
+        drawCircle(xAxis, yAxis, radius, 'blue');
+    }
+
+    function randomCoordinates(){
+
+        return Math.floor(Math.random() * 600);
+        
+    }   
+
+    var targetXAXIS = 0;
+    var targetYAXIS = 0;
+    
+    function checkXCoordinates(){
+
+        let axis = randomCoordinates();
+        
+        if(axis > 540){
+            
+            axis = axis - 60;
+            return axis;
+
+        } else if(axis < 60){
+
+            axis = axis + 60;
+            return axis;
+        }
+
+        return targetXAXIS = axis;
+    }
+
+    function checkYCoordinates(){
+
+        let axis = randomCoordinates();
+
+        if(axis > 540){
+    
+            axis = axis - 60;
+            return axis;
+
+        } else if(axis < 60){
+
+            axis = axis + 60;
+            return axis;
+        }
+
+        return targetYAXIS = axis;
+    }
+
+        
+    function randomTarget(){
+
+        var randomXAXIS = checkXCoordinates();
+        var randomYAXIS = checkYCoordinates();      
+        clearCanvas();
+        drawTarget(randomXAXIS, randomYAXIS);
+        
+    }
+
+    
+    var points = 0;
+
+    screen.onclick = function(event){
+
+        let x = event.pageX - screen.offsetLeft;
+        let y = event.pageY - screen.offsetTop;
+        
+        if(x <= targetXAXIS + radius && x >= targetXAXIS - radius && y <= targetYAXIS + radius && y >= targetYAXIS - radius){
+
+            points = points + 100;
+            textbox.innerHTML = points + " pontos!";
+
+        } else if(x <= targetXAXIS + Math.round(2.5*radius) && x >= targetXAXIS - Math.round(2.5*radius) && y <= targetYAXIS + Math.round(2.5*radius) && y >= targetYAXIS - Math.round(2.5*radius)){
+            
+            points = points + 50;
+            textbox.innerHTML = points + " pontos!";
+            
+        } else if(x <= targetXAXIS + 4*radius && x >= targetXAXIS - 4*radius && y <= targetYAXIS + 4*radius && y >= targetYAXIS - 4*radius){
+
+            points = points + 25;
+            textbox.innerHTML = points + " pontos!";
+        }
+    }
+
+    function intervalIDGetter(int){
+        
+        let interval = setInterval(randomTarget, int);
+        return intervalID = interval
+    }
+    
+    let intervalID    
+    
+    function interval(int){
+        
+        clearInterval(intervalID);
+        intervalIDGetter(int)
+                      
+    }
+    
+    function easyDifficulty(){
+
+        let difficulty = 3500;
+        randomTarget();        
+        interval(difficulty);
+    }
+    
+    function hardDifficulty(){
+
+        let difficulty = 1000;
+        randomTarget(); 
+        interval(difficulty);
+    }
+    
+    easyMode.onclick = easyDifficulty;
+    hardMode.onclick = hardDifficulty;
+   
+
+</script>
+
