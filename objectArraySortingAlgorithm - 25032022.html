@@ -1,0 +1,80 @@
+<meta charset="UTF-8">
+
+<script>
+  
+  var listaCarros = [
+    {nome: 'lamborghini', preco: 1000000},
+    {nome: 'Smart', preco: 46000},
+    {nome: 'Brasilia', preco: 16000},
+    {nome: 'Jeep', preco: 46000},
+    {nome: 'Fusca', preco: 17000}
+  ];
+    
+  function carroMaisBarato(){
+
+      let precoMaisBarato = null;
+      let carroMaisBarato = null;
+      for(let n = 0; n < listaCarros.length; n++){
+
+        let carroAtual = listaCarros[n].nome;
+        let precoAtual = listaCarros[n].preco;
+                
+        if (precoMaisBarato == null) {
+          precoMaisBarato = precoAtual;  
+        } else if(precoMaisBarato >= precoAtual){
+          precoMaisBarato = precoAtual;
+          carroMaisBarato = ("O carro mais barato é " + carroAtual + " que custa R$" + precoAtual + ".");
+        }
+      }
+      return carroMaisBarato;
+
+
+  }
+
+  function organizaLista(){
+
+    for(let repeat = 0; repeat <= listaCarros.length; repeat++){
+      
+      let precoAnterior = null;
+      let carroAnterior = null;
+      
+      for(let i = 0; i < listaCarros.length; i++){
+        
+        let precoAtual = listaCarros[i].preco
+        let carroAtual = listaCarros[i];
+        
+        if (precoAnterior == null) {
+          
+          carroAnterior = i;
+          precoAnterior = precoAtual;  
+          
+
+        }else if(precoAnterior > precoAtual){
+          
+          listaCarros[i] = listaCarros[carroAnterior];
+          listaCarros[carroAnterior] = carroAtual;
+
+          carroAnterior = i;
+          precoAnterior = precoAtual;                
+          
+        }else if(precoAnterior = precoAtual){
+          
+          if(listaCarros[carroAnterior].nome.charCodeAt(0) > listaCarros[i].nome.charCodeAt(0)){
+            listaCarros[i] = listaCarros[carroAnterior];
+            listaCarros[carroAnterior] = carroAtual;
+          }
+          
+          carroAnterior = i
+          precoAnterior = precoAtual;
+          
+        } else if(precoAnterior < precoAtual){
+
+          carroAnterior = i
+          precoAnterior = precoAtual;
+        }
+      }
+    }
+    console.log(listaCarros);
+  }
+
+</script>
