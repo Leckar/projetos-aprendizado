@@ -3,7 +3,7 @@
 <script>
   
   var listaCarros = [
-    {nome: 'lamborghini', preco: 1000000},
+    {nome: 'Lamborghini', preco: 1000000},
     {nome: 'Smart', preco: 66000},
     {nome: 'Corolla', preco: 80000},
     {nome: 'Renegade', preco: 86000},
@@ -84,7 +84,7 @@
     let carroMaisBarato
     let carroAtual
 
-    for(let atual = 0; atual < listaCarros.length; atual++){
+    for(let atual = 0; atual < (listaCarros.length - 1); atual++){
     
       carroMaisBarato = listaCarros[buscaCarroMaisBarato(atual)];
       carroAtual = listaCarros[atual];
@@ -113,7 +113,7 @@
     let carroMaisCaro
     let carroAtual
 
-    for(let atual = 0; atual < listaCarros.length; atual++){
+    for(let atual = 0; atual < (listaCarros.length - 1); atual++){
     
       carroMaisCaro = listaCarros[buscaCarroMaisCaro(atual)];
       carroAtual = listaCarros[atual];
