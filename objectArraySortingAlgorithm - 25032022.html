@@ -4,10 +4,14 @@
   
   var listaCarros = [
     {nome: 'lamborghini', preco: 1000000},
-    {nome: 'Smart', preco: 46000},
+    {nome: 'Smart', preco: 66000},
     {nome: 'Brasilia', preco: 16000},
-    {nome: 'Jeep', preco: 46000},
-    {nome: 'Fusca', preco: 17000}
+    {nome: 'Renegade', preco: 86000},
+    {nome: 'Fusca', preco: 17000},
+    {nome: 'Hilux', preco: 150000},
+    {nome: 'Corolla', preco: 80000},
+    {nome: 'Uno', preco: 37000},
+    {nome: 'Gol', preco: 51000}
   ];
     
   function carroMaisBarato(){
@@ -28,6 +32,26 @@
       }
       return carroMaisBarato;
 
+
+  }
+
+  function carroMaisCaro(){
+
+    let precoMaisCaro = null;
+    let carroMaisCaro = null;
+    for(let n = 0; n < listaCarros.length; n++){
+
+      let carroAtual = listaCarros[n].nome;
+      let precoAtual = listaCarros[n].preco;
+          
+      if (precoMaisCaro == null) {
+        precoMaisCaro = precoAtual;  
+      } else if(precoMaisCaro <= precoAtual){
+        precoMaisCaro = precoAtual;
+        carroMaisCaro = ("O carro mais caro é " + carroAtual + " que custa R$" + precoAtual + ".");
+      }
+    }
+    return carroMaisCaro;
 
   }
 
@@ -75,6 +99,14 @@
       }
     }
     console.log(listaCarros);
+  }
+
+  function adicionaCarro(){
+    let modelo = prompt('Informe o nome do carro:');
+    let valor = parse.int(prompt('Informe o preço do carro:'));
+    listaCarros.push({nome: modelo, preco: valor});
+    organizaLista();
+
   }
 
 </script>
