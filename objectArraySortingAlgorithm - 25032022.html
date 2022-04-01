@@ -70,15 +70,6 @@
     return console.log(listaCarros[indice].nome + ' é o carro mais caro e custa R$ ' + listaCarros[indice].preco + '.');
   }
 
-
-
-  function adicionaCarro(){
-    let modelo = prompt('Informe o nome do carro:');
-    let valor = parse.int(prompt('Informe o preço do carro:'));
-    listaCarros.push({nome: modelo, preco: valor});
-  
-  }
-
   function organizaListaMaisBarato(){
     
     let carroMaisBarato
