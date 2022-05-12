@@ -1,33 +1,31 @@
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 
 <script>
-  
-  var listaCarros = [
-    {nome: 'Lamborghini', preco: 1000000},
-    {nome: 'Smart', preco: 66000},
-    {nome: 'Corolla', preco: 80000},
-    {nome: 'Renegade', preco: 86000},
-    {nome: 'Clio', preco: 51000},
-    {nome: 'Fusca', preco: 17000},
-    {nome: 'Hilux', preco: 150000},
-    {nome: 'Brasilia', preco: 16000},
-    {nome: 'Uno', preco: 37000},
-    {nome: 'Gol', preco: 51000}
-  ];
-    
-  function buscaCarroMaisBarato(primeiroElemento){
 
+  var listaCarros = [
+    { nome: "Lamborghini", preco: 1000000 },
+    { nome: "Smart", preco: 66000 },
+    { nome: "Corolla", preco: 80000 },
+    { nome: "Renegade", preco: 86000 },
+    { nome: "Clio", preco: 51000 },
+    { nome: "Fusca", preco: 17000 },
+    { nome: "Hilux", preco: 150000 },
+    { nome: "Brasilia", preco: 16000 },
+    { nome: "Uno", preco: 37000 },
+    { nome: "Gol", preco: 51000 },
+  ];
+
+  function buscaCarroMaisBarato(primeiroElemento) {
     let precoMaisBarato;
     let indiceDoMaisBarato;
-    
-    for(let indice = primeiroElemento; indice < listaCarros.length; indice++){
 
+    for (let indice = primeiroElemento; indice < listaCarros.length; indice++) {
       let precoAtual = listaCarros[indice].preco;
-              
+
       if (precoMaisBarato == null) {
         precoMaisBarato = precoAtual;
-        indiceDoMaisBarato = indice;  
-      } else if(precoMaisBarato >= precoAtual){
+        indiceDoMaisBarato = indice;
+      } else if (precoMaisBarato >= precoAtual) {
         precoMaisBarato = precoAtual;
         indiceDoMaisBarato = indice;
       }
@@ -35,26 +33,26 @@
     return indiceDoMaisBarato;
   }
 
-  function mostraCarroMaisBarato(){
-    
+  function mostraCarroMaisBarato() {
     let indice = buscaCarroMaisBarato(0);
-    return console.log(listaCarros[indice].nome + ' é o carro mais barato e custa R$ ' + listaCarros[indice].preco + '.');
+    return console.log(
+      listaCarros[indice].nome +
+        " é o carro mais barato e custa R$ " +
+        listaCarros[indice].preco +
+        "."
+    );
   }
 
-
-  function buscaCarroMaisCaro(primeiroElemento){
-
+  function buscaCarroMaisCaro(primeiroElemento) {
     let precoMaisCaro;
     let indiceDoMaisCaro;
-    for(let indice = primeiroElemento; indice < listaCarros.length; indice++){
-
-      let carroAtual = listaCarros[indice].nome;
+    for (let indice = primeiroElemento; indice < listaCarros.length; indice++) {
       let precoAtual = listaCarros[indice].preco;
-          
+
       if (precoMaisCaro == null) {
         precoMaisCaro = precoAtual;
-        indiceDoMaisCaro = indice 
-      } else if(precoMaisCaro <= precoAtual){
+        indiceDoMaisCaro = indice;
+      } else if (precoMaisCaro <= precoAtual) {
         precoMaisCaro = precoAtual;
         indiceDoMaisCaro = indice;
       }
@@ -62,80 +60,87 @@
 
     return indiceDoMaisCaro;
   }
-  
-  function mostraCarroMaisCaro(){
-    
+
+  function mostraCarroMaisCaro() {
     let indice = buscaCarroMaisCaro(0);
-    return console.log(listaCarros[indice].nome + ' é o carro mais caro e custa R$ ' + listaCarros[indice].preco + '.');
+    return console.log(
+      listaCarros[indice].nome +
+        " é o carro mais caro e custa R$ " +
+        listaCarros[indice].preco +
+        "."
+    );
   }
 
-  function organizaListaMaisBarato(){
-         
-
-    for(let atual = 1; atual < listaCarros.length; atual++){
-      
+  function organizaListaMaisBarato() {
+    for (let atual = 1; atual < listaCarros.length; atual++) {
       let analisado = atual;
       let carroAtual;
       let carroAnterior;
 
-      while ((analisado > 0) && (listaCarros[analisado].preco < listaCarros[(analisado - 1)].preco)){
-
+      while (
+        analisado > 0 &&
+        listaCarros[analisado].preco < listaCarros[analisado - 1].preco
+      ) {
         carroAtual = listaCarros[analisado];
-        carroAnterior = listaCarros[(analisado - 1)];
+        carroAnterior = listaCarros[analisado - 1];
 
         listaCarros[analisado] = carroAnterior;
-        listaCarros[(analisado - 1)] = carroAtual;
+        listaCarros[analisado - 1] = carroAtual;
 
-        analisado--
+        analisado--;
       }
     }
 
-    for(let atual = 1; atual < listaCarros.length; atual++){
-      
-      let anterior = atual -1;
-      let Atual = listaCarros[atual];
+    for (let atual = 1; atual < listaCarros.length; atual++) {
+      let anterior = atual - 1;
+      let carroAtual = listaCarros[atual];
 
-      if((listaCarros[atual].nome.charCodeAt(0) < listaCarros[anterior].nome.charCodeAt(0)) && listaCarros[anterior].preco == listaCarros[atual].preco){
+      if (
+        listaCarros[atual].nome.charCodeAt(0) <
+          listaCarros[anterior].nome.charCodeAt(0) &&
+        listaCarros[anterior].preco == listaCarros[atual].preco
+      ) {
         listaCarros[atual] = listaCarros[anterior];
         listaCarros[anterior] = carroAtual;
       }
-    }  
+    }
     console.log(listaCarros);
   }
 
-  function organizaListaMaisCaro(){
-    
-    for(let atual = 1; atual < listaCarros.length; atual++){
-      
+  function organizaListaMaisCaro() {
+    for (let atual = 1; atual < listaCarros.length; atual++) {
       let analisado = atual;
       let carroAtual;
       let carroAnterior;
 
-      while ((analisado > 0) && (listaCarros[analisado].preco > listaCarros[(analisado - 1)].preco)){
-
+      while (
+        analisado > 0 &&
+        listaCarros[analisado].preco > listaCarros[analisado - 1].preco
+      ) {
         carroAtual = listaCarros[analisado];
-        carroAnterior = listaCarros[(analisado - 1)];
+        carroAnterior = listaCarros[analisado - 1];
 
         listaCarros[analisado] = carroAnterior;
-        listaCarros[(analisado - 1)] = carroAtual;
+        listaCarros[analisado - 1] = carroAtual;
 
-        analisado--
+        analisado--;
       }
     }
-    
-    for(let atual = 1; atual < listaCarros.length; atual++){
-      
-      let anterior = atual -1;
-      carroAtual = listaCarros[atual];
 
-      if((listaCarros[atual].nome.charCodeAt(0) < listaCarros[anterior].nome.charCodeAt(0)) && listaCarros[anterior].preco == listaCarros[atual].preco){
+    for (let atual = 1; atual < listaCarros.length; atual++) {
+      let anterior = atual - 1;
+      let carroAtual = listaCarros[atual];
+
+      if (
+        listaCarros[atual].nome.charCodeAt(0) <
+          listaCarros[anterior].nome.charCodeAt(0) &&
+        listaCarros[anterior].preco == listaCarros[atual].preco
+      ) {
         listaCarros[atual] = listaCarros[anterior];
         listaCarros[anterior] = carroAtual;
       }
-    }     
-        
+    }
+
     console.log(listaCarros);
   }
-
-
 </script>
